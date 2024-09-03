@@ -13,6 +13,10 @@ module.exports = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
+    container: {
+      center: true, // يركز الحاوية أفقيًا
+      padding: "2rem", // يضيف حشوة داخلية للحاوية
+    },
   },
   plugins: [],
 };
