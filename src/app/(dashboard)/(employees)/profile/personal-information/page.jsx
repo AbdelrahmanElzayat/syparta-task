@@ -4,6 +4,7 @@ import CommonHeader from "../../../../../components/navbar-profile/CommonHeader.
 import Breadcrumb from "../../../../../components/breadcrumb/BreadCrumb";
 import { useGetUserProfileQuery } from "../../../../../components/redux/profile-reducer/profile.js";
 import { useDispatch, useSelector } from "react-redux";
+import "./Loader.css";
 import {
   setUserData,
   setOriginalData,
@@ -19,10 +20,7 @@ const page = () => {
   const [zipCode, setZipCode] = useState("35624");
 
   const dispatch = useDispatch();
-  const { isEditable, userData } = useSelector(
-    (state) => state.profile
-  );
-
+  const { isEditable, userData } = useSelector((state) => state.profile);
 
   const breadcrumbs = [{ name: "Employees" }, { name: "Profile" }];
 
@@ -55,11 +53,12 @@ const page = () => {
       <Breadcrumb crumbs={breadcrumbs} />
       <CommonHeader />
 
-      {
-      error ? 
-      <p>error:</p> :
-      isLoading && !error ? (
-        <p>Loading...</p>
+      {error ? (
+        <p>error:</p>
+      ) : isLoading && !error ? (
+        <div className="w-full h-[200px] flex justify-center items-center">
+          <span className="loader"></span>
+        </div>
       ) : (
         <form className="mt-5">
           <div className="flex flex-col md:flex-row gap-5 mb-4">
@@ -274,7 +273,7 @@ const page = () => {
               <span className="text-base text-[#000] py-2">54,000 EGP</span>
             </div>
           </div>
-          {/* 
+          {/*
           <div className="flex gap-2 mt-4">
             <button
               type="button"

@@ -12,18 +12,20 @@ import {
   useGetUserProfileQuery,
   useUpdateUserProfileMutation,
 } from "../redux/profile-reducer/profile";
+import { toast } from "react-toastify";
 const InfoHeader = () => {
   const dispatch = useDispatch();
   const { isEditable, userData } = useSelector((state) => state.profile);
-  const { refetch, data, loading } = useGetUserProfileQuery();
+  const { data } = useGetUserProfileQuery();
 
   const [updateUserProfile] = useUpdateUserProfileMutation();
   const handleSave = async () => {
     try {
       await updateUserProfile(userData);
       dispatch(toggleEditable());
+      toast.success("data updated successfully");
     } catch (error) {
-      console.error("Failed to save profile", error);
+      toast.error("Failed to save profile");
     }
   };
 

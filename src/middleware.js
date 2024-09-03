@@ -4,18 +4,12 @@ export function middleware(request) {
   const token = request.cookies.get("token")?.value;
   const url = request.url;
 
-  // إذا لم يكن هناك توكن و المستخدم يحاول الوصول إلى صفحة تسجيل الدخول
   if (!token && url.includes("/login")) {
-    return NextResponse.next(); // لا تقم بإعادة التوجيه
+    return NextResponse.next();
   }
-
-  // إذا لم يكن هناك توكن و المستخدم يحاول الوصول إلى أي صفحة محمية
   if (!token) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
-
-  // إذا كان هناك توكن و المستخدم يحاول الوصول إلى صفحة تسجيل الدخول
-  // يمكن إعادة التوجيه إلى صفحة أخرى (مثل لوحة التحكم)
   if (token && url.includes("/login")) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }

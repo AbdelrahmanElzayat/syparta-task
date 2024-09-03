@@ -4,6 +4,8 @@ import "../globals.css";
 import SideBar from "../../components/sidebar/SideBar";
 import HeaderProfile from "../../components/header-profile/HeaderProfile";
 import { Providers } from "../../components/redux/Providers"; // Import the provider
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // const inter = Inter({ subsets: ["latin"] });
 const lexend = Lexend({ subsets: ["latin"] });
@@ -18,7 +20,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${lexend.className}`}>
         <Providers>
-          {" "}
+          <ToastContainer />
           {/* Wrap the main content with Providers */}
           <main className="container min-h-screen lg:custom-min-h flex items-start justify-start gap-10 py-8">
             <SideBar />

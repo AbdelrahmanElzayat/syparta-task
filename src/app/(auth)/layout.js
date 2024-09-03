@@ -2,6 +2,8 @@
 import { Lexend } from "next/font/google";
 import "../globals.css";
 import { Providers } from "../../components/redux/Providers"; // Import the provider
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const lexend = Lexend({ subsets: ["latin"] });
 
@@ -16,7 +18,8 @@ export default function AuthLayout({ children }) {
       <body className={`${lexend.className}`}>
         <Providers>
           <main className="min w-full h-screen">
-              {children}
+            <ToastContainer />
+            {children}
           </main>
         </Providers>
       </body>

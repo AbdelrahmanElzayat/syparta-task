@@ -8,10 +8,12 @@ import axios from "axios";
 import Cookies from "js-cookie";
 // import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const page = () => {
   const router = useRouter();
   const [showPass, setShowPass] = useState(false);
+  const [loading, setLoading] = useState(false);
   const initialValues = {
     email: "",
     password: "",
@@ -24,14 +26,18 @@ const page = () => {
 
   const handleSubmit = async (values) => {
     try {
+      setLoading(true)
       const response = await axios.post(
         "https://cyparta-backend-gf7qm.ondigitalocean.app/api/login/",
         values
       );
       await Cookies.set("token", response.data.access, { expires: 7 });
       router.push("/profile/personal-information"); 
+      toast.success("Logged in successfully")
+      setLoading(false)
     } catch (error) {
-      console.error("Login failed:", error);
+      toast.error("Login failed: The email or password is incorrect");
+      setLoading(false);
     }
   };
 
@@ -181,7 +187,9 @@ const page = () => {
                 className="w-full bg-[#262626] text-white py-4 px-4 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 disabled={isSubmitting}
               >
-                Login
+                {
+                  loading ? 'loading...' : 'Login'
+                }
               </button>
             </Form>
           )}
