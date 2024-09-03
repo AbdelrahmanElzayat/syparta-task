@@ -5,10 +5,10 @@ import { Providers } from "../../components/redux/Providers"; // Import the prov
 
 const lexend = Lexend({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "Auth Layout",
-  description: "Auth layout description",
-};
+// export const metadata = {
+//   title: "Auth Layout",
+//   description: "Auth layout description",
+// };
 
 export default function AuthLayout({ children }) {
   return (

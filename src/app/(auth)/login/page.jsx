@@ -28,7 +28,7 @@ const page = () => {
         "https://cyparta-backend-gf7qm.ondigitalocean.app/api/login/",
         values
       );
-      await Cookies.set("token", response.data.access, { expires: 7 }); // التوكن صالح لمدة 7 أيام
+      await Cookies.set("token", response.data.access, { expires: 7 });
       router.push("/profile/personal-information"); 
     } catch (error) {
       console.error("Login failed:", error);
